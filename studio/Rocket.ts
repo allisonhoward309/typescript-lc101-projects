@@ -15,8 +15,9 @@ export class Rocket {
     sumMass(items: Payload[]): number {
         let total: number =0;
         for (let i = 0; i<items.length; i++) {
-            return total += items[i].massKg;
+            total += items[i].massKg;
         } 
+        return total;
     }
 
     currentMassKg(): number {
@@ -24,13 +25,11 @@ export class Rocket {
     }
 
     canAdd(item: Payload): boolean {
-        if (this.currentMassKg() + item.massKg <= this.totalCapacityKg) {
-            return true;
-        }
+         return (this.currentMassKg() + item.massKg) <= this.totalCapacityKg;
     }
 
     addCargo(cargo: Cargo): boolean {
-     if(this.canAdd(cargo) === true) {
+     if(this.canAdd(cargo)) {
         this.CargoItems.push(cargo);
         return true;
      }   else {
@@ -39,13 +38,12 @@ export class Rocket {
     }
 
     addAstronaut(astronaut: Astronaut): boolean {
-        if(this.canAdd(astronaut) === true) {
+        if(this.canAdd(astronaut)) {
             this.astronauts.push(astronaut);
             return true;
         } else {
             return false;
         }
     }
-
 
  }
